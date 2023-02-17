@@ -44,7 +44,7 @@ class WordCard extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) {
-          return SecondScreen();
+          return SecondScreen(pair: pair);
         },
       ),
     );
