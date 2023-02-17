@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'my_body.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -22,8 +24,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HoGent'),
+        title: Column(
+          children: [
+            Icon(Icons.alarm),
+            Icon(Icons.alarm),
+          ],
+        ),
       ),
+      body: MyBody(),
     );
   }
 }
