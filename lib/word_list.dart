@@ -11,29 +11,30 @@ class WordList extends StatefulWidget {
 }
 
 class _WordListState extends State<WordList> {
-  late WordPair wordPair;
+  late List<WordPair> wordPairs;
 
   @override
   void initState() {
     super.initState();
-    wordPair = WordPair.random();
+    wordPairs = generateWordPairs().take(200).toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('wordPair: $wordPair');
-    return Center(
-      child: ElevatedButton(
-        child: Text(
-          wordPair.asPascalCase,
-          style: TextStyle(fontSize: 60),
-        ),
-        onPressed: () {
-          setState(() {
-            wordPair = WordPair.random();
-          });
-        },
-      ),
+    return ListView.builder(
+      itemCount: wordPairs.length,
+      itemBuilder: (_, index) {
+        final pair = wordPairs[index];
+        return Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              pair.toString(),
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        );
+      },
     );
   }
 }
