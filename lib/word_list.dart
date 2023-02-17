@@ -2,6 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:workshop/second_screen.dart';
 
 class WordList extends StatefulWidget {
   const WordList({super.key});
@@ -25,16 +26,43 @@ class _WordListState extends State<WordList> {
       itemCount: wordPairs.length,
       itemBuilder: (_, index) {
         final pair = wordPairs[index];
-        return Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              pair.toString(),
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-        );
+        return WordCard(pair: pair);
       },
+    );
+  }
+}
+
+class WordCard extends StatelessWidget {
+  const WordCard({
+    super.key,
+    required this.pair,
+  });
+
+  final WordPair pair;
+
+  void goToDetailScreen(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) {
+          return SecondScreen();
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: GestureDetector(
+        onTap: () => goToDetailScreen(context),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            pair.toString(),
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      ),
     );
   }
 }
