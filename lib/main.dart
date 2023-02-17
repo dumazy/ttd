@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/word_list.dart';
 
 import 'my_body.dart';
 
@@ -31,7 +32,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: MyBody(),
+      body: WordList(),
     );
   }
 }
